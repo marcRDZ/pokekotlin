@@ -21,6 +21,8 @@ dependencies {
     api("com.squareup.retrofit2:retrofit:2.8.1")
     api("com.squareup.retrofit2:converter-gson:2.8.1")
     api("com.squareup.retrofit2:adapter-rxjava:2.8.1")
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.6")
+    implementation ("io.arrow-kt:arrow-core:0.13.2")
 
     testImplementation(kotlin("test"))
     testImplementation(kotlin("test-junit"))
