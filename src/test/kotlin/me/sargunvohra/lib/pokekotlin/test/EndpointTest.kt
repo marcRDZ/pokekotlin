@@ -5,9 +5,11 @@ import kotlin.collections.HashMap
 import kotlin.reflect.full.declaredMemberFunctions
 import kotlin.test.assertEquals
 import me.sargunvohra.lib.pokekotlin.client.PokeApi
+import me.sargunvohra.lib.pokekotlin.util.toCapital
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.junit.Test
+import java.util.*
 
 class EndpointTest {
 
@@ -25,15 +27,14 @@ class EndpointTest {
                         .url(MockServer.url)
                         .build())
                 .execute()
-                .body()!!
-                .string()
+                .body?.string()
 
         // parse the expected resources using the list
         val expectedSingleResources = gson
                 .fromJson<HashMap<String, String>>(json, HashMap::class.java).keys
                 .map { endpointName ->
                     endpointName.split('-')
-                            .joinToString(separator = "") { it.capitalize() }
+                            .joinToString(separator = "") { it.toCapital() }
                 }
                 .toSet()
 

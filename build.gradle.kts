@@ -1,8 +1,7 @@
 import com.jfrog.bintray.gradle.BintrayExtension.PackageConfig
 
 plugins {
-    kotlin("jvm") version "1.3.70"
-    id("org.jlleitschuh.gradle.ktlint") version "9.2.1"
+    kotlin("jvm") version "1.5.31"
     jacoco
     `maven-publish`
     signing
@@ -14,21 +13,22 @@ version = "2.4.0"
 
 repositories {
     jcenter()
+    mavenCentral()
 }
 
 dependencies {
-    implementation(kotlin("stdlib-jdk8"))
-    api("com.squareup.retrofit2:retrofit:2.8.1")
-    api("com.squareup.retrofit2:converter-gson:2.8.1")
-    api("com.squareup.retrofit2:adapter-rxjava:2.8.1")
-    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.6")
-    implementation ("io.arrow-kt:arrow-core:0.13.2")
+    implementation(kotlin("stdlib-jdk8", "1.5.21"))
+    api("com.squareup.retrofit2:retrofit:2.9.0")
+    api("com.squareup.retrofit2:converter-gson:2.9.0")
+    api("com.squareup.retrofit2:adapter-rxjava:2.9.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2-native-mt")
+    implementation("io.arrow-kt:arrow-core:0.13.2")
 
-    testImplementation(kotlin("test"))
-    testImplementation(kotlin("test-junit"))
-    testImplementation(kotlin("reflect"))
-    testImplementation("junit:junit:4.13")
-    testImplementation("com.squareup.okhttp3:mockwebserver:3.14.8")
+    testImplementation(kotlin("test", "1.5.21"))
+    testImplementation(kotlin("test-junit", "1.5.21"))
+    testImplementation(kotlin("reflect", "1.5.21"))
+    testImplementation("junit:junit:4.13.2")
+    testImplementation("com.squareup.okhttp3:mockwebserver:4.9.1")
 }
 
 java {
@@ -37,7 +37,13 @@ java {
 }
 
 jacoco {
-    toolVersion = "0.8.5"
+    toolVersion = "0.8.7"
+}
+
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
 }
 
 tasks.test {

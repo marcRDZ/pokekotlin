@@ -21,7 +21,7 @@ object MockServer {
 
     private val server = MockWebServer()
 
-    val url = server.url("/api/v2/")!!
+    val url = server.url("/api/v2/")
     val client = PokeApiClient(ClientConfig(url))
 
     init {
@@ -47,8 +47,8 @@ object MockServer {
             }
 
             override fun dispatch(request: RecordedRequest): MockResponse {
-                val basePath = request.path.dropLastWhile { it != '/' }
-                val limit = server.url(request.path).queryParameter("limit")?.toInt()
+                val basePath = request.path?.dropLastWhile { it != '/' }
+                val limit = request.path?.let { server.url(it).queryParameter("limit")?.toInt() }
                 val file = File(sampleArchivePath.toString() + basePath + "index.json")
                 return if (file.exists()) {
                     var text = FileReader(file).use { it.readText() }
