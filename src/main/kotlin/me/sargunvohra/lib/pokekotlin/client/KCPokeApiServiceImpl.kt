@@ -6,10 +6,10 @@ import com.google.gson.reflect.TypeToken
 import me.sargunvohra.lib.pokekotlin.model.ApiResource
 import me.sargunvohra.lib.pokekotlin.model.NamedApiResource
 import me.sargunvohra.lib.pokekotlin.util.ApiResourceAdapter
+import me.sargunvohra.lib.pokekotlin.util.EitherCallAdapterFactory
 import me.sargunvohra.lib.pokekotlin.util.NamedApiResourceAdapter
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 internal class KCPokeApiServiceImpl(
@@ -31,6 +31,7 @@ internal class KCPokeApiServiceImpl(
             }.create()
         )
     )
+    .addCallAdapterFactory(EitherCallAdapterFactory())
     .client(OkHttpClient.Builder().(config.okHttpConfig)().build())
     .build()
     .create(KCPokeApiService::class.java)
