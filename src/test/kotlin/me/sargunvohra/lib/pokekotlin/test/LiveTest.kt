@@ -1,9 +1,9 @@
 package me.sargunvohra.lib.pokekotlin.test
 
-import kotlin.test.assertEquals
 import me.sargunvohra.lib.pokekotlin.client.PokeApiClient
 import org.junit.Ignore
 import org.junit.Test
+import kotlin.test.assertEquals
 
 @Ignore
 class LiveTest {

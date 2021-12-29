@@ -5,9 +5,11 @@
 
 # PokeKotlin
 
-Maintainer: [sargunv](https://github.com/sargunv)
-
 This is a [Kotlin](https://kotlinlang.org/) (and Java, Scala, etc) client for [PokeApi](https://github.com/PokeAPI/pokeapi). It's written in Kotlin.
+
+Fork project from [PokeKotlin](https://github.com/PokeAPI/pokekotlin) adding a client implementation with Kotlin coroutines and [Arrow-kt](https://arrow-kt.io/) Either responses wrapping together with the basic and Rx ones.
+
+All credits belong to the author: [sargunv](https://github.com/sargunv)
 
 ## Example
 

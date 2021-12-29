@@ -3,19 +3,20 @@ package me.sargunvohra.lib.pokekotlin.test
 import com.google.gson.Gson
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
-import java.io.File
-import java.io.FileReader
-import java.nio.charset.Charset
-import java.nio.file.Paths
-import java.util.logging.Level
-import java.util.logging.LogManager
 import me.sargunvohra.lib.pokekotlin.client.ClientConfig
+import me.sargunvohra.lib.pokekotlin.client.KCPokeApiClient
 import me.sargunvohra.lib.pokekotlin.client.PokeApiClient
 import okhttp3.mockwebserver.Dispatcher
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import okhttp3.mockwebserver.RecordedRequest
 import okio.Buffer
+import java.io.File
+import java.io.FileReader
+import java.nio.charset.Charset
+import java.nio.file.Paths
+import java.util.logging.Level
+import java.util.logging.LogManager
 
 object MockServer {
 
@@ -23,6 +24,7 @@ object MockServer {
 
     val url = server.url("/api/v2/")
     val client = PokeApiClient(ClientConfig(url))
+    val kcClient = KCPokeApiClient(ClientConfig(url))
 
     init {
         // disable MockWebServer logging

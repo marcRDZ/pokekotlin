@@ -1,8 +1,8 @@
 package me.sargunvohra.lib.pokekotlin.client
 
-import java.util.concurrent.TimeUnit
 import okhttp3.HttpUrl
 import okhttp3.OkHttpClient
+import java.util.concurrent.TimeUnit
 
 class ClientConfig(
     val rootUrl: HttpUrl = HttpUrl.parse("https://pokeapi.co/api/v2/")!!,

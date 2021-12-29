@@ -1,6 +1,5 @@
 package me.sargunvohra.lib.pokekotlin.test.model
 
-import kotlin.test.assertEquals
 import me.sargunvohra.lib.pokekotlin.model.AbilityEffectChange
 import me.sargunvohra.lib.pokekotlin.model.AbilityPokemon
 import me.sargunvohra.lib.pokekotlin.model.ApiResource
@@ -31,6 +30,7 @@ import me.sargunvohra.lib.pokekotlin.model.VerboseEffect
 import me.sargunvohra.lib.pokekotlin.model.VersionGameIndex
 import me.sargunvohra.lib.pokekotlin.test.MockServer
 import org.junit.Test
+import kotlin.test.assertEquals
 
 class PokemonTest {
 
@@ -229,14 +229,16 @@ class PokemonTest {
                 ) in gameIndices
             )
             assertEquals(emptyList(), heldItems)
-            assert(moves.find {
-                it.move == NamedApiResource("razor-wind", "move", 13) &&
-                    PokemonMoveVersion(
-                        levelLearnedAt = 0,
-                        versionGroup = NamedApiResource("gold-silver", "version-group", 3),
-                        moveLearnMethod = NamedApiResource("egg", "move-learn-method", 2)
-                    ) in it.versionGroupDetails
-            } != null)
+            assert(
+                moves.find {
+                    it.move == NamedApiResource("razor-wind", "move", 13) &&
+                        PokemonMoveVersion(
+                            levelLearnedAt = 0,
+                            versionGroup = NamedApiResource("gold-silver", "version-group", 3),
+                            moveLearnMethod = NamedApiResource("egg", "move-learn-method", 2)
+                        ) in it.versionGroupDetails
+                } != null
+            )
             assert(
                 PokemonStat(
                     effort = 0,
@@ -256,13 +258,15 @@ class PokemonTest {
     @Test
     fun getPokemon2() {
         MockServer.client.getPokemon(12).apply {
-            assert(heldItems.find {
-                it.item == NamedApiResource("silver-powder", "item", 199) &&
-                    PokemonHeldItemVersion(
-                        version = NamedApiResource("ruby", "version", 7),
-                        rarity = 5
-                    ) in it.versionDetails
-            } != null)
+            assert(
+                heldItems.find {
+                    it.item == NamedApiResource("silver-powder", "item", 199) &&
+                        PokemonHeldItemVersion(
+                            version = NamedApiResource("ruby", "version", 7),
+                            rarity = 5
+                        ) in it.versionDetails
+                } != null
+            )
         }
     }
 
@@ -275,22 +279,20 @@ class PokemonTest {
                         "kanto-route-2-south-towards-viridian-city",
                         "location-area",
                         296
-                    ) &&
-                        locAreaEncounter.versionDetails.find { detail ->
-                            detail.maxChance == 10
-                            detail.version == NamedApiResource("heartgold", "version", 15)
-                            detail.encounterDetails.find { encounter ->
-                                encounter.minLevel == 8 &&
-                                    encounter.maxLevel == 8 &&
-                                    encounter.chance == 5 &&
-                                    encounter.method == NamedApiResource(
-                                    "walk", "encounter-method", 1
-                                ) &&
-                                    NamedApiResource(
-                                        "time-morning", "encounter-condition-value", 3
-                                    ) in encounter.conditionValues
-                            } != null
+                    ) && locAreaEncounter.versionDetails.find { detail ->
+                        detail.maxChance == 10
+                        detail.version == NamedApiResource("heartgold", "version", 15)
+                        detail.encounterDetails.find { encounter ->
+                            encounter.minLevel == 8 &&
+                                encounter.maxLevel == 8 &&
+                                encounter.chance == 5 &&
+                                encounter.method == NamedApiResource(
+                                "walk", "encounter-method", 1
+                            ) && NamedApiResource(
+                                "time-morning", "encounter-condition-value", 3
+                            ) in encounter.conditionValues
                         } != null
+                    } != null
                 } != null
             )
         }

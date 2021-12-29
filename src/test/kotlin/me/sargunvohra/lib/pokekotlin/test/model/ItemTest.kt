@@ -1,8 +1,5 @@
 package me.sargunvohra.lib.pokekotlin.test.model
 
-import kotlin.test.assertEquals
-import kotlin.test.assertNotEquals
-import kotlin.test.assertNotNull
 import me.sargunvohra.lib.pokekotlin.model.ApiResource
 import me.sargunvohra.lib.pokekotlin.model.Description
 import me.sargunvohra.lib.pokekotlin.model.Effect
@@ -14,6 +11,9 @@ import me.sargunvohra.lib.pokekotlin.model.VerboseEffect
 import me.sargunvohra.lib.pokekotlin.model.VersionGroupFlavorText
 import me.sargunvohra.lib.pokekotlin.test.MockServer
 import org.junit.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertNotEquals
+import kotlin.test.assertNotNull
 
 class ItemTest {
 
@@ -63,15 +63,18 @@ class ItemTest {
     @Test
     fun getItem2() {
         MockServer.client.getItem(33).apply {
-            assertNotEquals(null, heldByPokemon.find {
-                it.pokemon == NamedApiResource("miltank", "pokemon", 241) &&
-                    it.versionDetails.contains(
-                        ItemHolderPokemonVersionDetail(
-                            rarity = 100,
-                            version = NamedApiResource("y", "version", 24)
+            assertNotEquals(
+                null,
+                heldByPokemon.find {
+                    it.pokemon == NamedApiResource("miltank", "pokemon", 241) &&
+                        it.versionDetails.contains(
+                            ItemHolderPokemonVersionDetail(
+                                rarity = 100,
+                                version = NamedApiResource("y", "version", 24)
+                            )
                         )
-                    )
-            })
+                }
+            )
         }
     }
 
@@ -97,16 +100,18 @@ class ItemTest {
     @Test
     fun getItem6() {
         MockServer.client.getItem(305).apply {
-            assertNotNull(machines.find { machineVersionDetail ->
-                machineVersionDetail.machine == ApiResource(
-                    "machine",
-                    1
-                ) && machineVersionDetail.versionGroup == NamedApiResource(
-                    "red-blue",
-                    "version-group",
-                    1
-                )
-            })
+            assertNotNull(
+                machines.find { machineVersionDetail ->
+                    machineVersionDetail.machine == ApiResource(
+                        "machine",
+                        1
+                    ) && machineVersionDetail.versionGroup == NamedApiResource(
+                        "red-blue",
+                        "version-group",
+                        1
+                    )
+                }
+            )
         }
     }
 

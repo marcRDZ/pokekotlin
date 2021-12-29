@@ -2,6 +2,7 @@ import com.jfrog.bintray.gradle.BintrayExtension.PackageConfig
 
 plugins {
     kotlin("jvm") version "1.5.31"
+    id("org.jlleitschuh.gradle.ktlint") version "10.2.0"
     jacoco
     `maven-publish`
     signing
@@ -28,7 +29,7 @@ dependencies {
     testImplementation(kotlin("test-junit", "1.5.21"))
     testImplementation(kotlin("reflect", "1.5.21"))
     testImplementation("junit:junit:4.13.2")
-    testImplementation("com.squareup.okhttp3:mockwebserver:4.9.1")
+    testImplementation("com.squareup.okhttp3:mockwebserver:3.14.9")
 }
 
 java {
@@ -118,10 +119,12 @@ bintray {
         ?: System.getenv("BINTRAY_KEY")
     setPublications("maven")
     publish = true
-    pkg(delegateClosureOf<PackageConfig> {
-        repo = "maven"
-        name = "pokekotlin"
-    })
+    pkg(
+        delegateClosureOf<PackageConfig> {
+            repo = "maven"
+            name = "pokekotlin"
+        }
+    )
 }
 
 tasks.publish {

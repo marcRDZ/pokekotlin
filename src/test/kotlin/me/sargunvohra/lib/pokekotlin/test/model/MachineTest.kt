@@ -1,9 +1,9 @@
 package me.sargunvohra.lib.pokekotlin.test.model
 
-import kotlin.test.assertEquals
 import me.sargunvohra.lib.pokekotlin.model.NamedApiResource
 import me.sargunvohra.lib.pokekotlin.test.MockServer
 import org.junit.Test
+import kotlin.test.assertEquals
 
 class MachineTest {
 

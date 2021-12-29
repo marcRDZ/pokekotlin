@@ -1,7 +1,5 @@
 package me.sargunvohra.lib.pokekotlin.test.model
 
-import kotlin.test.assertEquals
-import kotlin.test.assertNotNull
 import me.sargunvohra.lib.pokekotlin.model.ApiResource
 import me.sargunvohra.lib.pokekotlin.model.ContestComboDetail
 import me.sargunvohra.lib.pokekotlin.model.ContestComboSets
@@ -16,6 +14,8 @@ import me.sargunvohra.lib.pokekotlin.model.PastMoveStatValues
 import me.sargunvohra.lib.pokekotlin.model.VerboseEffect
 import me.sargunvohra.lib.pokekotlin.test.MockServer
 import org.junit.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertNotNull
 
 class MoveTest {
 

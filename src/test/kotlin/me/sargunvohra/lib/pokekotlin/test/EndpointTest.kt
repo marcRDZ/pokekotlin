@@ -1,15 +1,13 @@
 package me.sargunvohra.lib.pokekotlin.test
 
 import com.google.gson.Gson
-import kotlin.collections.HashMap
-import kotlin.reflect.full.declaredMemberFunctions
-import kotlin.test.assertEquals
 import me.sargunvohra.lib.pokekotlin.client.PokeApi
 import me.sargunvohra.lib.pokekotlin.util.toCapital
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.junit.Test
-import java.util.*
+import kotlin.reflect.full.declaredMemberFunctions
+import kotlin.test.assertEquals
 
 class EndpointTest {
 
@@ -27,7 +25,7 @@ class EndpointTest {
                         .url(MockServer.url)
                         .build())
                 .execute()
-                .body?.string()
+                .body()?.string()
 
         // parse the expected resources using the list
         val expectedSingleResources = gson
